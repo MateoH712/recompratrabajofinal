@@ -17,10 +17,10 @@ st.title('Recompra clientes')
 st.write('Introduce los detalles para predecir recompra')
 
 # Input fields for user data
-dias_ultima_compra = st.number_input('Days since last purchase', min_value=0, value=30)
-compras_ult_90d = st.number_input('Purchases in last 90 days', min_value=0, value=5)
-total_compras_historicas = st.number_input('Total historical purchases', min_value=0, value=100)
-ticket_promedio = st.number_input('Average ticket size', min_value=0.0, value=50.0)
+dias_ultima_compra = st.number_input('Dias despues de la ultima compra', min_value=0, value=30)
+compras_ult_90d = st.number_input('compras en los ultimos 90 días', min_value=0, value=5)
+total_compras_historicas = st.number_input('Total de compras hostóricas', min_value=0, value=100)
+ticket_promedio = st.number_input('Ticket promedio', min_value=0.0, value=50.0)
 
 # Create a DataFrame from user input
 input_data = pd.DataFrame([{
@@ -43,7 +43,7 @@ except Exception as e:
     st.stop()
 
 # Make prediction
-if st.button('Predict Churn'):
+if st.button('Predecir recompra'):
     try:
         prediction = xgb_model.predict(scaled_input_df)
         prediction_proba = xgb_model.predict_proba(scaled_input_df)[:, 1]
